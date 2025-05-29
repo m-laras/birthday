@@ -65,7 +65,7 @@ var love = setInterval(function () {
     var r_time = Math.floor(Math.random() * 5) + 5; // Random animation duration (5s to 10s)
 
     // Create a new heart element with an image
-    var heart = $("<div class='heart'><img src='../assets/lovePixel.png' alt='heart'></div>");
+    var heart = $("<div class='heart'><img src='../assets/love2.png' alt='heart'></div>");
     heart.css({
         width: r_size + "px",
         height: r_size + "px",
