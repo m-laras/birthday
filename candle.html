@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Ivan's Birthday</title>
+    <link rel="stylesheet" href="./styles/candle.css">
+    <script src="./script/candle.js"></script>
+
+</head>
+<body>
+    <h1>
+      Selesai doa lilinnya ditiup ya!<br>
+    (tap)
+    </h1>
+     <div class="glow" id="glow"></div>
+     <div id="candle">
+       <div class="stripe"></div>
+       <div class="stripe"></div>
+       <div class="stripe"></div>
+       <div class="stripe"></div>
+       <div class="stripe"></div>
+       <div id="top">
+         <div class="smoke"></div>
+         <div class="smoke"></div>
+         <div class="smoke"></div>
+         <div id="knot"></div>
+         <div class="burn" id="flame"></div>
+       </div>
+     </div>
+
+     <script>
+        function setupMusic() {
+            const music = document.getElementById('backgroundMusic');
+            
+            const isMusicPlaying = localStorage.getItem('musicPlaying') === 'true';
+            const musicCurrentTime = localStorage.getItem('musicCurrentTime') || 0;
+    
+            if (isMusicPlaying) {
+                music.currentTime = parseFloat(musicCurrentTime);
+            }
+    
+            music.addEventListener('play', () => {
+                localStorage.setItem('musicPlaying', 'true');
+            });
+    
+            music.addEventListener('pause', () => {
+                localStorage.setItem('musicPlaying', 'false');
+            });
+    
+            setInterval(() => {
+                localStorage.setItem('musicCurrentTime', music.currentTime);
+            }, 1000);
+    
+            document.addEventListener('click', function startMusic() {
+                music.play().catch(error => {
+                    console.log('Autoplay prevented', error);
+                });
+                document.removeEventListener('click', startMusic);
+            });
+        }
+    
+            document.addEventListener('DOMContentLoaded', setupMusic);
+    </script>
+    
+    <audio id="backgroundMusic" loop>
+        <source src="assets/Sempurna (Acoustic Instrumental).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </script>
+    
+</body>
+</html>
